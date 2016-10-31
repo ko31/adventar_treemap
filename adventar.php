@@ -11,8 +11,8 @@ use Goutte\Client;
 
 $client = new Client();
 
-// Adventarの2015年一覧ページをGET
-$crawler = $client->request('GET', 'http://www.adventar.org/calendars?year=2015');
+// Adventarの2016年一覧ページをGET
+$crawler = $client->request('GET', 'http://www.adventar.org/calendars?year=2016');
 
 // カレンダーリスト部分を取得
 $dom = $crawler->filter('div.mod-calendarList ul li');
@@ -32,6 +32,7 @@ $dom->each(function ($node) use (&$records) {
         'url' => $url,
         'style' => trim(str_replace('background:', '', $style)),
         'count' => $count,
+        'count_rev' => (string)($count * -1),
     );
 });
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>【Adventar】2015年アドベントカレンダー登録状況</title>
+<title>【Adventar】2016年アドベントカレンダー登録状況</title>
 <style>
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -25,11 +25,12 @@ form {
 </style>
 </head>
 <body>
-<p>【Adventar】2015年アドベントカレンダー登録状況</p>
+<p>【Adventar】2016年アドベントカレンダー登録状況</p>
 <form>
-  <label><input type="radio" name="mode" value="count" checked> 登録件数</label>
-  <label><input type="radio" name="mode" value="length"> タイトル文字数</label>
+  <label><input type="radio" name="mode" value="count" checked> 登録件数（多）</label>
+  <label><input type="radio" name="mode" value="count_rev"> 登録件数（少）</label>
 </form>
+
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -60,14 +61,14 @@ d3.json("adventar.json", function(error, root) {
       .attr("xlink:href", '/')
       .call(position)
       .style("background", function(d) { return d.style;})  //Adventarの背景色セット
-      .text(function(d) { return d.children ? null : d.name+'('+d.count+')'; })
+      .text(function(d) { console.debug(d);return d.children ? null : d.name+'('+d.count+')'; })
       .on("click", function(d){
            window.open('http://www.adventar.org'+d.url, '_blank'); //AdventarのURLにリンク
        });
 
   d3.selectAll("input").on("change", function change() {
-    var value = this.value === "length"
-        ? function(d) { return d.name.length; }
+    var value = this.value === "count_rev"
+        ? function(d) { return d.count_rev; }
         : function(d) { return d.count; };
 
     node
@@ -86,5 +87,7 @@ function position() {
 }
 
 </script>
+
+<p style="margin-top:20px;">「 <a href="http://blog.ko31.com/201610/adventar-d3js-treemap-2016/">Adventarの登録状況をD3.jsのツリーマップで可視化してみた【2016年版】 | rui live note</a>」より</p>
 </body>
 </html>
