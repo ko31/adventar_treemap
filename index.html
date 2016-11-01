@@ -61,7 +61,7 @@ d3.json("adventar.json", function(error, root) {
       .attr("xlink:href", '/')
       .call(position)
       .style("background", function(d) { return d.style;})  //Adventarの背景色セット
-      .text(function(d) { console.debug(d);return d.children ? null : d.name+'('+d.count+')'; })
+      .text(function(d) { return d.children ? null : d.name+'('+d.count+')'; })
       .on("click", function(d){
            window.open('http://www.adventar.org'+d.url, '_blank'); //AdventarのURLにリンク
        });

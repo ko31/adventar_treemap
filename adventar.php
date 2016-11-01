@@ -32,7 +32,8 @@ $dom->each(function ($node) use (&$records) {
         'url' => $url,
         'style' => trim(str_replace('background:', '', $style)),
         'count' => $count,
-        'count_rev' => (string)($count * -1),
+        'count_rev' => (string)($count * -1 + 25),
+//        'count_rev' => (string)($count * -1),
     );
 });
 
